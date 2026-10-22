@@ -1,0 +1,109 @@
+﻿Created At: 2026-08-10T21:20:45+02:00
+Completed At: 2026-08-10T21:20:45+02:00
+File Path: `file:///c:/Users/Dell%20Latitude/.gemini/antigravity/scratch/cbl-m1/js/app.js`
+Total Lines: 1832
+Total Bytes: 78831
+Showing lines 1 to 100
+The following code has been modified to include a line number before every line, in the format: <line_number>: <original_line>. Please note that any changes targeting the original code should remove the line number, colon, and leading space.
+1: const app = {
+2:     state: {
+3:         selectedSubscriptionType: null
+4:     },
+5: 
+6:     init() {
+7:         this.bindNavItems();
+8:         this.bindModalCloseButtons();
+9:         this.bindLogoutButton();
+10:         this.bindReceiptSearch();
+11:         this.bindReportFilters();
+12:         this.bindSubscriptionForm();
+13:         this.bindUserForm();
+14:         this.bindSettingsForms();
+15:         this.bindActionMenus();
+16:         this.bindReceiptEditForm();
+17:         this.bindBookingForm();
+18:         this.bindBookingEditForm();
+19:         this.bindRentForm();
+20:         this.updateCurrentDate();
+21:         this.updateUserProfile();
+22:         this.applyRoleAccess();
+23:         this.resetSubscriptionFlow();
+24:         this.loadSettingsForms();
+25:         this.renderDashboardStats();
+26:         this.renderLatestReceipts();
+27:         this.renderReceiptSearch();
+28:         this.renderReportTable();
+29:         this.renderBookings();
+30:         this.renderRents();
+31:         this.renderClosingPage();
+32:         this.renderSubscribers();
+33:         this.renderUsers();
+34:         this.renderProfilePage();
+35:     },
+36: 
+37:     // Close any open "تخصيص" action dropdown menus when clicking elsewhere on the page
+38:     bindActionMenus() {
+39:         document.addEventListener('click', () => {
+40:             this.closeActionsMenus();
+41:         });
+42:     },
+43: 
+44:     closeActionsMenus() {
+45:         document.querySelectorAll('.dropdown-menu.open').forEach(menu => {
+46:             menu.classList.remove('open');
+47:         });
+48:     },
+49: 
+50:     toggleActionsMenu(event, menuId) {
+51:         event.stopPropagation();
+52:         const menu = document.getElementById(menuId);
+53:         if (!menu) return;
+54: 
+55:         const wasOpen = menu.classList.contains('open');
+56:         this.closeActionsMenus();
+57:         if (wasOpen) return;
+58: 
+59:         const button = event.currentTarget;
+60:         const rect = button.getBoundingClientRect();
+61:         menu.style.top = `${rect.bottom + 4}px`;
+62:         menu.style.left = `${Math.max(8, rect.right - 170)}px`;
+63:         menu.classList.add('open');
+64:     },
+65: 
+66:     bindNavItems() {
+67:         const navItems = document.querySelectorAll('.nav-item');
+68:         navItems.forEach(item => {
+69:             item.addEventListener('click', event => {
+70:                 event.preventDefault();
+71:                 const target = item.dataset.target;
+72:                 if (target) {
+73:                     this.activatePage(target);
+74:                 }
+75:             });
+76:         });
+77:     },
+78: 
+79:     bindModalCloseButtons() {
+80:         const closeButtons = document.querySelectorAll('.modal-close');
+81:         closeButtons.forEach(button => {
+82:             button.addEventListener('click', () => this.closeModals());
+83:         });
+84:     },
+85: 
+86:     bindLogoutButton() {
+87:         const logoutButton = document.getElementById('logout-button');
+88:         if (logoutButton) {
+89:             logoutButton.addEventListener('click', event => {
+90:                 event.preventDefault();
+91:                 auth.logout();
+92:             });
+93:         }
+94:     },
+95: 
+96:     bindReceiptSearch() {
+97:         const searchInput = document.getElementById('search-query');
+98:         const filterType = document.getElementById('filter-type');
+99:         const filterDate = document.getElementById('filter-date');
+100: 
+The above content does NOT show the entire file contents. If you need to view any lines of the file which were not shown to complete your task, call this tool again to view those lines.
+
